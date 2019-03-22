@@ -88,37 +88,28 @@
 <p>机器A：192.168.70.62</p>
 <p>机器B：192.168.70.63</p>
 <p>机器C：192.168.70.64</p>
-<h3 id="本地机器生成私钥和公钥文件"><a href="#本地机器生成私钥和公钥文件" class="headerlink" title="本地机器生成私钥和公钥文件"></a>本地机器生成私钥和公钥文件</h3><p>进入/home/cgyx/.ssh/ 目录，如果目录不存在先创建目录</p>
-<blockquote>
-<p>$ cd /home/cgyx/.ssh/</p>
-<p>$ ssh-keygen</p>
-</blockquote>
+<h3 id="本地机器生成私钥和公钥文件"><a href="#本地机器生成私钥和公钥文件" class="headerlink" title="本地机器生成私钥和公钥文件"></a>本地机器生成私钥和公钥文件</h3><p>进入/home/cgyx/.ssh/ 目录，如果目录不存在先创建目录<br>cd /home/cgyx/.ssh/</p>
+<p>ssh-keygen</p>
 <p>输入ssh-keygen命令之后，会让你输入保存公钥和私钥的文件名(默认是 id_rsa),这里直接回车</p>
 <p>紧接着是让你输入私钥的口令短语以及在此确认私钥的口令短语，增加口令短语在私钥的基础上再增加一层验证，安全性更有保障，这里先忽略(后面有需要可以设置),直接两次回车。</p>
 <p>在 ~/.ssh/ 目录下生成了id_rsa(私钥) 和 id_rsa.pub(公钥)文件</p>
 <h3 id="本地机器公钥添加到认证文件中"><a href="#本地机器公钥添加到认证文件中" class="headerlink" title="本地机器公钥添加到认证文件中"></a>本地机器公钥添加到认证文件中</h3><p>生成公钥和私钥文件之后，需要把公钥添加到认证文件中，不然通过SSH工具(SecureCRT、Putty、XShell等)无法通过公钥免密登录</p>
-<blockquote>
-<p>$ ssh-copy-id -i ~/.ssh/id_rsa.pub cgyx@localhost</p>
-</blockquote>
+<p>ssh-copy-id -i ~/.ssh/id_rsa.pub cgyx@localhost</p>
 <p>ssh-copy-id命令会把 ~/.ssh/id_rsa.pub 文件中的内容添加到当前目录中的authorized_keys(如果不存在会自动创建)中，并且会自动设置authorized_keys文件的权限(600),注意：authorized_keys权限设置错误也会导致SSH工具无法通过公钥免密登录</p>
 <h3 id="本地机器公钥追加到目标机器上"><a href="#本地机器公钥追加到目标机器上" class="headerlink" title="本地机器公钥追加到目标机器上"></a>本地机器公钥追加到目标机器上</h3><blockquote>
 <p>$ ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.70.63 也可以带上目标机器的用户名 ssh-copy-id -i ~/.ssh/id_rsa.pub <a href="mailto:cgyx@192.168.70.63" target="_blank" rel="noopener">cgyx@192.168.70.63</a>, 没有带目标机器用户名的默认是和本地机器用户名相同，<br>命令执行成功之后，会把本地机器的公钥添加到目标机器 ~/.ssh/ 目录的 authorized_keys 文件中</p>
-<p>$ ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.70.64也可以带上目标机器的用户名 ssh-copy-id -i ~/.ssh/id_rsa.pub <a href="mailto:cgyx@192.168.70.64" target="_blank" rel="noopener">cgyx@192.168.70.64</a>，没有带目标机器用户名的默认是和本地机器用户名相同，命令执行成功之后，会把本地机器的公钥添加到目标机器 ~/.ssh/ 目录的 authorized_keys 文件中</p>
 </blockquote>
-<h3 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h3><blockquote>
-<p>$ ssh 192.168.70.63</p>
+<p>ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.70.64也可以带上目标机器的用户名 ssh-copy-id -i ~/.ssh/id_rsa.pub <a href="mailto:cgyx@192.168.70.64" target="_blank" rel="noopener">cgyx@192.168.70.64</a>，没有带目标机器用户名的默认是和本地机器用户名相同，命令执行成功之后，会把本地机器的公钥添加到目标机器 ~/.ssh/ 目录的 authorized_keys 文件中</p>
+<h3 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h3><p>ssh 192.168.70.63</p>
 <p>Last login: Thu Feb 28 15:13:07 2019 from 192.168.70.62</p>
-<p>$ exit</p>
+<p>exit</p>
 <p>登出</p>
 <p>Connection to 192.168.70.63 closed.</p>
-</blockquote>
-<blockquote>
-<p>$ ssh 192.168.70.64</p>
+<p>ssh 192.168.70.64</p>
 <p>Last login: Thu Feb 28 10:39:39 2019 from 192.168.10.7</p>
-<p>$ exit</p>
+<p>exit</p>
 <p>登出</p>
 <p>Connection to 192.168.70.64 closed.</p>
-</blockquote>
 
       
     </div>
