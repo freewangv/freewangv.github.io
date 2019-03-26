@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>ssh-keygen的使用</title>
+      <link href="/2019/03/22/ssh-keygen-use/"/>
+      <url>/2019/03/22/ssh-keygen-use/</url>
+      
+        <content type="html"><![CDATA[<p>以下面三台机器作为测试机，其中机器A当作本地机器，三台机器测试用户是cgyx</p><p>机器A：192.168.70.62</p><p>机器B：192.168.70.63</p><p>机器C：192.168.70.64</p><h3 id="本地机器生成私钥和公钥文件"><a href="#本地机器生成私钥和公钥文件" class="headerlink" title="本地机器生成私钥和公钥文件"></a>本地机器生成私钥和公钥文件</h3><p>进入/home/cgyx/.ssh/ 目录，如果目录不存在先创建目录<br>cd /home/cgyx/.ssh/</p><p>ssh-keygen</p><p>输入ssh-keygen命令之后，会让你输入保存公钥和私钥的文件名(默认是 id_rsa),这里直接回车</p><p>紧接着是让你输入私钥的口令短语以及在此确认私钥的口令短语，增加口令短语在私钥的基础上再增加一层验证，安全性更有保障，这里先忽略(后面有需要可以设置),直接两次回车。</p><p>在 ~/.ssh/ 目录下生成了id_rsa(私钥) 和 id_rsa.pub(公钥)文件</p><h3 id="本地机器公钥添加到认证文件中"><a href="#本地机器公钥添加到认证文件中" class="headerlink" title="本地机器公钥添加到认证文件中"></a>本地机器公钥添加到认证文件中</h3><p>生成公钥和私钥文件之后，需要把公钥添加到认证文件中，不然通过SSH工具(SecureCRT、Putty、XShell等)无法通过公钥免密登录</p><p>ssh-copy-id -i ~/.ssh/id_rsa.pub cgyx@localhost</p><p>ssh-copy-id命令会把 ~/.ssh/id_rsa.pub 文件中的内容添加到当前目录中的authorized_keys(如果不存在会自动创建)中，并且会自动设置authorized_keys文件的权限(600),注意：authorized_keys权限设置错误也会导致SSH工具无法通过公钥免密登录</p><h3 id="本地机器公钥追加到目标机器上"><a href="#本地机器公钥追加到目标机器上" class="headerlink" title="本地机器公钥追加到目标机器上"></a>本地机器公钥追加到目标机器上</h3><p>ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.70.63 也可以带上目标机器的用户名 ssh-copy-id -i ~/.ssh/id_rsa.pub <a href="mailto:cgyx@192.168.70.63" target="_blank" rel="noopener">cgyx@192.168.70.63</a>, 没有带目标机器用户名的默认是和本地机器用户名相同，<br>命令执行成功之后，会把本地机器的公钥添加到目标机器 ~/.ssh/ 目录的 authorized_keys 文件中</p><p>ssh-copy-id -i ~/.ssh/id_rsa.pub 192.168.70.64也可以带上目标机器的用户名 ssh-copy-id -i ~/.ssh/id_rsa.pub <a href="mailto:cgyx@192.168.70.64" target="_blank" rel="noopener">cgyx@192.168.70.64</a>，没有带目标机器用户名的默认是和本地机器用户名相同，命令执行成功之后，会把本地机器的公钥添加到目标机器 ~/.ssh/ 目录的 authorized_keys 文件中</p><h3 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h3><p>ssh 192.168.70.63<br>Last login: Thu Feb 28 15:13:07 2019 from 192.168.70.62<br>exit<br>登出</p><p>Connection to 192.168.70.63 closed.</p><p>ssh 192.168.70.64<br>Last login: Thu Feb 28 10:39:39 2019 from 192.168.10.7<br>exit<br>登出<br>Connection to 192.168.70.64 closed.</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2019/03/22/hello-world/"/>
+      <url>/2019/03/22/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>

@@ -1,92 +1,524 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
 
-  
-  <title>ssh-keygen的使用 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="以下面三台机器作为测试机，其中机器A当作本地机器，三台机器测试用户是cgyx 机器A：192.168.70.62 机器B：192.168.70.63 机器C：192.168.70.64 本地机器生成私钥和公钥文件进入/home/cgyx/.ssh/ 目录，如果目录不存在先创建目录cd /home/cgyx/.ssh/ ssh-keygen 输入ssh-keygen命令之后，会让你输入保存公钥和私钥">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ssh-keygen的使用">
-<meta property="og:url" content="https://freewangv.github.io/2019/03/22/ssh-keygen-use/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="以下面三台机器作为测试机，其中机器A当作本地机器，三台机器测试用户是cgyx 机器A：192.168.70.62 机器B：192.168.70.63 机器C：192.168.70.64 本地机器生成私钥和公钥文件进入/home/cgyx/.ssh/ 目录，如果目录不存在先创建目录cd /home/cgyx/.ssh/ ssh-keygen 输入ssh-keygen命令之后，会让你输入保存公钥和私钥">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-25T06:08:02.650Z">
+<html lang="zh-Hans">
+    <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <!--
+        © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+        Version: 1.3.2
+    -->
+    <script>
+window.lsVersion = "1.3.2",
+window.oldVersion = [
+    
+        
+            "0.2.0","0.0.1","0.1.0","1.0.0","1.0.1","1.1.0","1.1.1","1.2.0","1.3.0"
+        
+    
+]
+</script>
+
+    <!-- ### DNS Prefetch ### -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+<!-- busuanzi -->
+
+    <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
+
+
+<!-- comment -->
+
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+
+
+    <!-- ### Preload ### -->
+    
+    <!-- Busuanzi -->
+    
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" as="script">
+
+
+
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+<!-- Title -->
+<title>ssh-keygen的使用 | freewangv</title>
+
+<!-- favicon -->
+<!-- Favicons -->
+
+    <link rel="shortcut icon" type="image/ico" href="/img/suka-favicon.ico">
+
+
+
+
+
+
+<!-- Android Chrome Color -->
+
+
+
+<meta name="format-detection" content="telephone=no">
+
+<!-- Description -->
+<meta name="description" content="以下面三台机器作为测试机，其中机器A当作本地机器，三台机器测试用户是cgyx
+机器A：192.168.70.62
+机器B：192.168.70.63
+机器C：192.168.70.64">
+
+<!-- Keywords -->
+<meta name="keywords" content>
+
+<!-- Disable Fucking Bloody Baidu Tranformation -->
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!-- ### Import File ### -->
+    
+        <!-- spectre.css -->
+
+    <link rel="stylesheet" href="/lib/spectre/spectre.min.css">
+
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style>
+
+<!-- style.css -->
+
+    <link rel="stylesheet" href="/css/style.min.css">
+
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
+    
+    
+        <link rel="stylesheet" href="/css/highlight/github.min.css">
+    
+
+
+
+    
+
+    <!-- ### Site Verification ### -->
+    
+
+
+    <!-- ### RSS ### -->
+    
+
+    <!-- ### WebApp ### -->
+    <meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="freewangv">
+<meta name="msapplication-starturl" content="http://freewangv.in">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="freewangv">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Manifest Import -->
+
+<!-- Open Search -->
+
+    <link rel="search" type="application/opensearchdescription+xml" href="search.xml" title="freewangv">
+
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="ssh-keygen的使用 | freewangv">
+<meta property="og:site_name" content="freewangv">
+
+<meta property="og:locale" content="zh-Hans">
+
+<meta property="og:url" content="http://freewangv.in/2019/03/22/ssh-keygen-use/">
+<meta property="og:image" content="http://freewangv.in/img/suka-favicon.ico">
+
+<meta property="og:description" content="以下面三台机器作为测试机，其中机器A当作本地机器，三台机器测试用户是cgyx
+机器A：192.168.70.62
+机器B：192.168.70.63
+机器C：192.168.70.64">
+
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ssh-keygen的使用">
-<meta name="twitter:description" content="以下面三台机器作为测试机，其中机器A当作本地机器，三台机器测试用户是cgyx 机器A：192.168.70.62 机器B：192.168.70.63 机器C：192.168.70.64 本地机器生成私钥和公钥文件进入/home/cgyx/.ssh/ 目录，如果目录不存在先创建目录cd /home/cgyx/.ssh/ ssh-keygen 输入ssh-keygen命令之后，会让你输入保存公钥和私钥">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://freewangv.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-ssh-keygen-use" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/22/ssh-keygen-use/" class="article-date">
-  <time datetime="2019-03-22T10:55:14.988Z" itemprop="datePublished">2019-03-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      ssh-keygen的使用
-    </h1>
-  
 
-      </header>
+
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2019-03-22T10:55:14.988Z">
+    <meta property="article:modified_time" content="2019-03-22T10:55:14.988Z">
+    <meta property="article:author" content="freewangv">
+    <meta property="og:article:tag" content> 
+
+
+
+
+
+    <!-- ### Analytics ### -->
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>以下面三台机器作为测试机，其中机器A当作本地机器，三台机器测试用户是cgyx</p>
+
+
+
+
+
+
+
+
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="http://freewangv.in/2019/03/22/ssh-keygen-use/">
+
+    <!-- ### Structured Data ### -->
+    
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "url": "http://freewangv.in/2019/03/22/ssh-keygen-use/",
+    "@type": "BlogPosting",
+    "logo": "http://freewangv.in/img/suka-favicon.ico",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://freewangv.in/2019/03/22/ssh-keygen-use/"
+    },
+    "headline": "ssh-keygen的使用 | freewangv",
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://freewangv.in/img/suka-favicon.ico"
+    },
+    
+    "datePublished": "2019-03-22T10:55:14.988Z",
+    "dateModified": "2019-03-25T06:08:02.651Z",
+    "author": {
+        "@type": "Person",
+        "name": "freewangv",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://freewangv.in/img/default_avatar.png"
+        },
+        "description": "Hi, nice to meet you."
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "freewangv",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://freewangv.in/img/suka-favicon.ico"
+        }
+    },
+    
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "http://freewangv.in/search?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    
+    "keywords": "",
+    "description": "以下面三台机器作为测试机，其中机器A当作本地机器，三台机器测试用户是cgyx
+机器A：192.168.70.62
+机器B：192.168.70.63
+机器C：192.168.70.64"
+}
+</script>
+
+
+
+    <!-- ### Custom Head ### -->
+    
+
+
+</head>
+
+    <body>
+        
+
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/">freewangv</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                Hi, nice to meet you.
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
+    
+        <a href="/" class="navbar-link">Home</a>
+    
+    
+        <a href="/archives/" class="navbar-link">Archives</a>
+    
+    
+        <a href="/search" class="navbar-link">Search</a>
+    
+    
+    
+        <div class="dropdown dropdown-right">
+    <a class="navbar-link dropdown-toggle" tabindex="0">Share</a>
+    <ul class="menu share-menu">
+
+        <!-- Share Weibo -->
+        
+        <li class="menu-item">
+            <a href="http://service.weibo.com/share/share.php?appkey=&title=freewangv&url=http://freewangv.in&pic=http://freewangv.in/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="noopener noreferrer nofollow">Share to Weibo</a>
+        </li>
+        
+
+        <!-- Share Twitter -->
+        
+        <li class="menu-item">
+            <a href="https://twitter.com/intent/tweet?text=freewangv&url=http://freewangv.in&via=freewangv" target="_blank" rel="noopener noreferrer nofollow">Share to Twitter</a>
+        </li>
+        
+
+        <!-- Share Facebook -->
+        
+        <li class="menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://freewangv.in" target="_blank" rel="noopener noreferrer nofollow">Share to Facebook</a>
+        </li>
+        
+
+        <!-- Share Google+ -->
+        
+        <li class="menu-item">
+            <a href="https://plus.google.com/share?url=http://freewangv.in" target="_blank" rel="noopener noreferrer nofollow">Share to Google+</a>
+        </li>
+        
+
+        <!-- Share LinkedIn -->
+        
+        <li class="menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://freewangv.in&title=ssh-keygen的使用" target="_blank" rel="noopener noreferrer nofollow">Share to LinkedIn</a>
+        </li>
+        
+
+        <!-- Share QQ -->
+        
+        <li class="menu-item">
+            <a href="http://connect.qq.com/widget/shareqq/index.html?site=freewangv&title=ssh-keygen的使用&summary=记录技术、生活、美食等&pics=http://freewangv.in/img/suka-favicon.ico&url=http://freewangv.in" target="_blank" rel="noopener noreferrer nofollow"> Share to QQ</a>
+        </li>
+        
+
+        <!-- Share Telegram -->
+        
+        <li class="menu-item">
+            <a href="https://t.me/share/url?url=http://freewangv.in&text=ssh-keygen的使用" target="_blank" rel="noopener noreferrer nofollow">Share to Telegram</a>
+        </li>
+        
+
+        <!-- QRCode -->
+        
+        <li class="menu-item">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB5ElEQVR42u3ay5LDIAxEUf//T0+2nhR0t4gXIF9vksoDjqswQoLrb8PrAgUKFKgB6hLXvz/cPvv+/v756DXtB1Qf1HDQTVCjBtUNVPoB1Qs162g0qBV49FAk/YB6F0p17AY0KFBJcB1OfOH3oN6DmjWoOqvcxKOrBFDbo5IF3BOvj2UzoLZG2aLDJPFM3o8C9iNVF1Bbo9RATCbMyoOh2gfVB+UW+SoJTYois/dykQfqaJT7o8Kki7x0YgXVA2V/GC7+3G+TSRRUD5QriqWLNlfsV4U2UL1QNkiGA7/azjApAdUG5TqebQytJK1y4wlUW1TSYRKQ3UalnDxBHYtyjasihXoA4mTBLfJAHYlSDc4GtzrUpZIFeXOgWqDcAHSJqArQPxc4QB2JSg5suWKsLdoHRRBQ/VDJoeZkEk2C81LVBdRxqGpiqibCtMAfnwoCdSwqnQQrG9oquS0FZFDHoVzhvdJxGpSjDBnU8ajqpnYSvF1hBFQvlLsqB5OTYol6sED1QEUHjQuLuGRzPCpwgDoatRJ8KxPr0kAHdTwqLba6DcikSDZNYkG9BuUmWTWJKkQ5mwHVBlUJxmpz3CaxoFqhfkkYbDEs3TgA1QaVBs3KBmSyCb6czYDaGrXTBQoUKFC36wO73i+e4hl6vwAAAABJRU5ErkJggg==" alr="QRCode">
+        </li>
+        
+
+    </ul>
+</div>
+    
+    
+</nav>
+</header>
+
+            
+    <!-- ## Post ## -->
+    
+    
+
+
+<div class="post-container">
+    <div id="post-card" class="card">
+        
+        <div class="card-item-container">
+            <div class="card-inner-cell">
+                <!-- # Post Header Info # -->
+                <div class="card-header">
+                    
+    <h1 class="card-title h3 mb-2">ssh-keygen的使用</h1>
+
+<div class="post-header-info">
+    <p class="post-header-info-left text-gray">
+        <img class="author-thumb lazyload" data-src="/img/default_avatar.png" alt="freewangv's Avatar">
+        <span>2019-03-22</span>
+        
+        
+            <!-- Busuanzi Post Views -->
+<span id="busuanzi_container_page_pv" hidden>
+    <span class="suka-devide-dot"></span>
+    <span></span>
+    <span id="busuanzi_value_page_pv"></span>
+    <span>Views</span>
+</span>
+        
+        
+    </p>
+    <div class="post-header-info-right">
+        
+            <div class="dropdown dropdown-right">
+<a class="dropdown-toggle" tabindex="0">Share the post</a>
+<ul class="menu share-menu">
+    <!-- Share Weibo -->
+    
+    <li class="menu-item">
+        <a href="http://service.weibo.com/share/share.php?appkey=&title=ssh-keygen的使用&url=http://freewangv.in/2019/03/22/ssh-keygen-use/&pic=http://freewangv.in/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="noopener noreferrer nofollow">Share to Weibo</a>
+    </li>
+    
+
+    <!-- Share Twitter -->
+    
+    <li class="menu-item">
+        <a href="https://twitter.com/intent/tweet?text=ssh-keygen的使用&url=http://freewangv.in/2019/03/22/ssh-keygen-use/&via=freewangv" target="_blank" rel="noopener noreferrer nofollow">Share to Twitter</a>
+    </li>
+    
+
+    <!-- Share Facebook -->
+    
+    <li class="menu-item">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://freewangv.in/2019/03/22/ssh-keygen-use/" target="_blank" rel="noopener noreferrer nofollow">Share to Facebook</a>
+    </li>
+    
+
+    <!-- Share Google+ -->
+    
+    <li class="menu-item">
+        <a href="https://plus.google.com/share?url=http://freewangv.in/2019/03/22/ssh-keygen-use/" target="_blank" rel="noopener noreferrer nofollow">Share to Google+</a>
+    </li>
+    
+
+    <!-- Share LinkedIn -->
+    
+    <li class="menu-item">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://freewangv.in/2019/03/22/ssh-keygen-use/&title=freewangv" target="_blank" rel="noopener noreferrer nofollow">Share to LinkedIn</a>
+    </li>
+    
+
+    <!-- Share QQ -->
+    
+    <li class="menu-item">
+        <a href="http://connect.qq.com/widget/shareqq/index.html?site=freewangv&title=freewangv&summary=记录技术、生活、美食等&pics=http://freewangv.in/img/suka-favicon.ico&url=http://freewangv.in/2019/03/22/ssh-keygen-use/" target="_blank" rel="noopener noreferrer nofollow"> Share to QQ</a>
+    </li>
+    
+
+    <!-- Share Telegram -->
+    
+    <li class="menu-item">
+        <a href="https://t.me/share/url?url=http://freewangv.in/2019/03/22/ssh-keygen-use/&text=freewangv" target="_blank" rel="noopener noreferrer nofollow">Share to Telegram</a>
+    </li>
+    
+
+    <!-- QRCode -->
+    
+    <li class="menu-item">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB5ElEQVR42u3ay5LDIAxEUf//T0+2nhR0t4gXIF9vksoDjqswQoLrb8PrAgUKFKgB6hLXvz/cPvv+/v756DXtB1Qf1HDQTVCjBtUNVPoB1Qs162g0qBV49FAk/YB6F0p17AY0KFBJcB1OfOH3oN6DmjWoOqvcxKOrBFDbo5IF3BOvj2UzoLZG2aLDJPFM3o8C9iNVF1Bbo9RATCbMyoOh2gfVB+UW+SoJTYois/dykQfqaJT7o8Kki7x0YgXVA2V/GC7+3G+TSRRUD5QriqWLNlfsV4U2UL1QNkiGA7/azjApAdUG5TqebQytJK1y4wlUW1TSYRKQ3UalnDxBHYtyjasihXoA4mTBLfJAHYlSDc4GtzrUpZIFeXOgWqDcAHSJqArQPxc4QB2JSg5suWKsLdoHRRBQ/VDJoeZkEk2C81LVBdRxqGpiqibCtMAfnwoCdSwqnQQrG9oquS0FZFDHoVzhvdJxGpSjDBnU8ajqpnYSvF1hBFQvlLsqB5OTYol6sED1QEUHjQuLuGRzPCpwgDoatRJ8KxPr0kAHdTwqLba6DcikSDZNYkG9BuUmWTWJKkQ5mwHVBlUJxmpz3CaxoFqhfkkYbDEs3TgA1QaVBs3KBmSyCb6czYDaGrXTBQoUKFC36wO73i+e4hl6vwAAAABJRU5ErkJggg==" alt="QRCode">
+    </li>
+    
+
+</ul>
+</div>
+        
+    </div>
+</div>
+                </div>
+                <div class="card-body">
+                    
+                        
+                            <div id="post-toc">
+                                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#本地机器生成私钥和公钥文件"><span class="post-toc-number">1.</span> <span class="post-toc-text">本地机器生成私钥和公钥文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#本地机器公钥添加到认证文件中"><span class="post-toc-number">2.</span> <span class="post-toc-text">本地机器公钥添加到认证文件中</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#本地机器公钥追加到目标机器上"><span class="post-toc-number">3.</span> <span class="post-toc-text">本地机器公钥追加到目标机器上</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#验证结果"><span class="post-toc-number">4.</span> <span class="post-toc-text">验证结果</span></a></li></ol>
+                            </div>
+                        
+                    
+                    <article id="post-content">
+                        <p>以下面三台机器作为测试机，其中机器A当作本地机器，三台机器测试用户是cgyx</p>
 <p>机器A：192.168.70.62</p>
 <p>机器B：192.168.70.63</p>
 <p>机器C：192.168.70.64</p>
@@ -104,103 +536,153 @@
 <p>Connection to 192.168.70.63 closed.</p>
 <p>ssh 192.168.70.64<br>Last login: Thu Feb 28 10:39:39 2019 from 192.168.10.7<br>exit<br>登出<br>Connection to 192.168.70.64 closed.</p>
 
-      
+                    </article>
+                    
+
+
+    <blockquote id="date-expire-notification" class="post-expired-notify">This article was last updated on <span id="date-expire-num"></span> days ago, and the information described in the article may have changed.</blockquote>
+    <script>
+        var dateUpdate = Date.parse("2019-03-25");
+        var nowDate = new Date();
+        var a = nowDate.getTime();
+        var b = a - dateUpdate;
+        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
+        if (daysUpdateExpire >= 120) {
+            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
+        } else {
+            document.getElementById('date-expire-notification').style.display = 'none';
+        }
+    </script>
+
+
+<p class="post-footer-info mb-0 pt-0">Published at&nbsp;<time datetime="2019-03-22T10:55:14.988Z" itemprop="datePublished">2019-03-22</time>
+
+    , Updated at&nbsp;<time datetime="2019-03-25T06:08:02.651Z" itemprop="dateModified">2019-03-25</time>
+
+</p>
+<p class="post-footer-info mb-0 pt-2">
+
+
+
+
+</p>
+
+                </div>
+                
+<div class="post-nav px-2 bg-gray">
+<ul class="pagination">
+    <!-- Prev Nav -->
+    
+
+    <!-- Next Nav -->
+    
+        <li class="page-item page-next">
+            <a href="/2019/03/22/hello-world/">
+                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">Hello World</div>
+            </a>
+        </li>
+    
+</ul>
+</div>
+
+                
+                    <!-- # Comment # -->
+                    
+                
+            </div>
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://freewangv.github.io/2019/03/22/ssh-keygen-use/" data-id="cjto7x2qm0001d8aolh3db9m2" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
+</div>
+
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
+    <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span data-year></span>
+        <a class="footer-copyright-a" href="http://freewangv.in">freewangv</a>
+    </p>
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
     
-<nav id="article-nav">
-  
-  
-    <a href="/2019/03/22/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-</section>
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
         
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
+            
+    <!-- Busuanzi User Views -->
+    <span id="busuanzi_container_site_uv" hidden>
+        <span></span>
+        <span id="busuanzi_value_site_uv"></span>
+        <span>Viewers</span>
         
-          <li>
-            <a href="/2019/03/22/ssh-keygen-use/">ssh-keygen的使用</a>
-          </li>
+            <span>|</span>
         
-          <li>
-            <a href="/2019/03/22/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+    </span>
 
-  
-</aside>
+
+
         
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 freewang<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="noopener">Suka</a>
+    </p>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+
+        
+
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+
+
+
+    /* Copyright */
+    var copyrightNow = new Date().getFullYear();
+    var copyrightContent = document.querySelector('span[data-year]')
+    
+        copyrightContent.textContent = copyrightNow
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+/* Cnosole Log */
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.2 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+</script>
+
+<!-- vanilla-lazyload -->
+
+    <script src="/lib/vanilla-lazyload/lazyload.min.js" async></script>
 
 
-<script src="/js/script.js"></script>
+
+    <!-- Busuanzi -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+<!-- Offset -->
 
 
 
-  </div>
-</body>
+
+
+
+
+<!-- gallery.js -->
+
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+
+    </body>
+
 </html>
