@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="zh-Hans">
+<html lang="en">
     <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <!--
@@ -206,16 +206,16 @@ window.oldVersion = [
 
 <!-- Open Search -->
 
-    <link rel="search" type="application/opensearchdescription+xml" href="search.xml" title="freewangv">
+    <link rel="search" type="application/opensearchdescription+xml" href="/source/opensearch.xml" title="freewangv">
 
 
     <!-- ### The Open Graph & Twitter Card Protocol ### -->
     <meta property="og:title" content="ssh-keygen的使用 | freewangv">
 <meta property="og:site_name" content="freewangv">
 
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale" content="en">
 
-<meta property="og:url" content="http://freewangv.in/2019/03/22/ssh-keygen-use/">
+<meta property="og:url" content="http://freewangv.in/post/ssh-keygen-use.html">
 <meta property="og:image" content="http://freewangv.in/img/suka-favicon.ico">
 
 <meta property="og:description" content="以下面三台机器作为测试机，其中机器A当作本地机器，三台机器测试用户是cgyx
@@ -247,7 +247,7 @@ window.oldVersion = [
 
 
     <!-- ### Canonical link ### -->
-    <link rel="canonical" href="http://freewangv.in/2019/03/22/ssh-keygen-use/">
+    <link rel="canonical" href="http://freewangv.in/post/ssh-keygen-use.html">
 
     <!-- ### Structured Data ### -->
     
@@ -257,12 +257,12 @@ window.oldVersion = [
 <script type="application/ld+json">
 {
     "@context": "http://schema.org",
-    "url": "http://freewangv.in/2019/03/22/ssh-keygen-use/",
+    "url": "http://freewangv.in/post/ssh-keygen-use.html",
     "@type": "BlogPosting",
     "logo": "http://freewangv.in/img/suka-favicon.ico",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "http://freewangv.in/2019/03/22/ssh-keygen-use/"
+        "@id": "http://freewangv.in/post/ssh-keygen-use.html"
     },
     "headline": "ssh-keygen的使用 | freewangv",
     
@@ -342,69 +342,8 @@ window.oldVersion = [
         <a href="/search" class="navbar-link">Search</a>
     
     
+        <a href="/about/" class="navbar-link">About</a>
     
-        <div class="dropdown dropdown-right">
-    <a class="navbar-link dropdown-toggle" tabindex="0">Share</a>
-    <ul class="menu share-menu">
-
-        <!-- Share Weibo -->
-        
-        <li class="menu-item">
-            <a href="http://service.weibo.com/share/share.php?appkey=&title=freewangv&url=http://freewangv.in&pic=http://freewangv.in/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="noopener noreferrer nofollow">Share to Weibo</a>
-        </li>
-        
-
-        <!-- Share Twitter -->
-        
-        <li class="menu-item">
-            <a href="https://twitter.com/intent/tweet?text=freewangv&url=http://freewangv.in&via=freewangv" target="_blank" rel="noopener noreferrer nofollow">Share to Twitter</a>
-        </li>
-        
-
-        <!-- Share Facebook -->
-        
-        <li class="menu-item">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=http://freewangv.in" target="_blank" rel="noopener noreferrer nofollow">Share to Facebook</a>
-        </li>
-        
-
-        <!-- Share Google+ -->
-        
-        <li class="menu-item">
-            <a href="https://plus.google.com/share?url=http://freewangv.in" target="_blank" rel="noopener noreferrer nofollow">Share to Google+</a>
-        </li>
-        
-
-        <!-- Share LinkedIn -->
-        
-        <li class="menu-item">
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://freewangv.in&title=ssh-keygen的使用" target="_blank" rel="noopener noreferrer nofollow">Share to LinkedIn</a>
-        </li>
-        
-
-        <!-- Share QQ -->
-        
-        <li class="menu-item">
-            <a href="http://connect.qq.com/widget/shareqq/index.html?site=freewangv&title=ssh-keygen的使用&summary=记录技术、生活、美食等&pics=http://freewangv.in/img/suka-favicon.ico&url=http://freewangv.in" target="_blank" rel="noopener noreferrer nofollow"> Share to QQ</a>
-        </li>
-        
-
-        <!-- Share Telegram -->
-        
-        <li class="menu-item">
-            <a href="https://t.me/share/url?url=http://freewangv.in&text=ssh-keygen的使用" target="_blank" rel="noopener noreferrer nofollow">Share to Telegram</a>
-        </li>
-        
-
-        <!-- QRCode -->
-        
-        <li class="menu-item">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB5ElEQVR42u3ay5LDIAxEUf//T0+2nhR0t4gXIF9vksoDjqswQoLrb8PrAgUKFKgB6hLXvz/cPvv+/v756DXtB1Qf1HDQTVCjBtUNVPoB1Qs162g0qBV49FAk/YB6F0p17AY0KFBJcB1OfOH3oN6DmjWoOqvcxKOrBFDbo5IF3BOvj2UzoLZG2aLDJPFM3o8C9iNVF1Bbo9RATCbMyoOh2gfVB+UW+SoJTYois/dykQfqaJT7o8Kki7x0YgXVA2V/GC7+3G+TSRRUD5QriqWLNlfsV4U2UL1QNkiGA7/azjApAdUG5TqebQytJK1y4wlUW1TSYRKQ3UalnDxBHYtyjasihXoA4mTBLfJAHYlSDc4GtzrUpZIFeXOgWqDcAHSJqArQPxc4QB2JSg5suWKsLdoHRRBQ/VDJoeZkEk2C81LVBdRxqGpiqibCtMAfnwoCdSwqnQQrG9oquS0FZFDHoVzhvdJxGpSjDBnU8ajqpnYSvF1hBFQvlLsqB5OTYol6sED1QEUHjQuLuGRzPCpwgDoatRJ8KxPr0kAHdTwqLba6DcikSDZNYkG9BuUmWTWJKkQ5mwHVBlUJxmpz3CaxoFqhfkkYbDEs3TgA1QaVBs3KBmSyCb6czYDaGrXTBQoUKFC36wO73i+e4hl6vwAAAABJRU5ErkJggg==" alr="QRCode">
-        </li>
-        
-
-    </ul>
-</div>
     
     
 </nav>
@@ -450,56 +389,56 @@ window.oldVersion = [
     <!-- Share Weibo -->
     
     <li class="menu-item">
-        <a href="http://service.weibo.com/share/share.php?appkey=&title=ssh-keygen的使用&url=http://freewangv.in/2019/03/22/ssh-keygen-use/&pic=http://freewangv.in/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="noopener noreferrer nofollow">Share to Weibo</a>
+        <a href="http://service.weibo.com/share/share.php?appkey=&title=ssh-keygen的使用&url=http://freewangv.in/post/ssh-keygen-use.html&pic=http://freewangv.in/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="noopener noreferrer nofollow">Share to Weibo</a>
     </li>
     
 
     <!-- Share Twitter -->
     
     <li class="menu-item">
-        <a href="https://twitter.com/intent/tweet?text=ssh-keygen的使用&url=http://freewangv.in/2019/03/22/ssh-keygen-use/&via=freewangv" target="_blank" rel="noopener noreferrer nofollow">Share to Twitter</a>
+        <a href="https://twitter.com/intent/tweet?text=ssh-keygen的使用&url=http://freewangv.in/post/ssh-keygen-use.html&via=freewangv" target="_blank" rel="noopener noreferrer nofollow">Share to Twitter</a>
     </li>
     
 
     <!-- Share Facebook -->
     
     <li class="menu-item">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://freewangv.in/2019/03/22/ssh-keygen-use/" target="_blank" rel="noopener noreferrer nofollow">Share to Facebook</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://freewangv.in/post/ssh-keygen-use.html" target="_blank" rel="noopener noreferrer nofollow">Share to Facebook</a>
     </li>
     
 
     <!-- Share Google+ -->
     
     <li class="menu-item">
-        <a href="https://plus.google.com/share?url=http://freewangv.in/2019/03/22/ssh-keygen-use/" target="_blank" rel="noopener noreferrer nofollow">Share to Google+</a>
+        <a href="https://plus.google.com/share?url=http://freewangv.in/post/ssh-keygen-use.html" target="_blank" rel="noopener noreferrer nofollow">Share to Google+</a>
     </li>
     
 
     <!-- Share LinkedIn -->
     
     <li class="menu-item">
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://freewangv.in/2019/03/22/ssh-keygen-use/&title=freewangv" target="_blank" rel="noopener noreferrer nofollow">Share to LinkedIn</a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://freewangv.in/post/ssh-keygen-use.html&title=freewangv" target="_blank" rel="noopener noreferrer nofollow">Share to LinkedIn</a>
     </li>
     
 
     <!-- Share QQ -->
     
     <li class="menu-item">
-        <a href="http://connect.qq.com/widget/shareqq/index.html?site=freewangv&title=freewangv&summary=记录技术、生活、美食等&pics=http://freewangv.in/img/suka-favicon.ico&url=http://freewangv.in/2019/03/22/ssh-keygen-use/" target="_blank" rel="noopener noreferrer nofollow"> Share to QQ</a>
+        <a href="http://connect.qq.com/widget/shareqq/index.html?site=freewangv&title=freewangv&summary=记录技术、生活、美食等&pics=http://freewangv.in/img/suka-favicon.ico&url=http://freewangv.in/post/ssh-keygen-use.html" target="_blank" rel="noopener noreferrer nofollow"> Share to QQ</a>
     </li>
     
 
     <!-- Share Telegram -->
     
     <li class="menu-item">
-        <a href="https://t.me/share/url?url=http://freewangv.in/2019/03/22/ssh-keygen-use/&text=freewangv" target="_blank" rel="noopener noreferrer nofollow">Share to Telegram</a>
+        <a href="https://t.me/share/url?url=http://freewangv.in/post/ssh-keygen-use.html&text=freewangv" target="_blank" rel="noopener noreferrer nofollow">Share to Telegram</a>
     </li>
     
 
     <!-- QRCode -->
     
     <li class="menu-item">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB5ElEQVR42u3ay5LDIAxEUf//T0+2nhR0t4gXIF9vksoDjqswQoLrb8PrAgUKFKgB6hLXvz/cPvv+/v756DXtB1Qf1HDQTVCjBtUNVPoB1Qs162g0qBV49FAk/YB6F0p17AY0KFBJcB1OfOH3oN6DmjWoOqvcxKOrBFDbo5IF3BOvj2UzoLZG2aLDJPFM3o8C9iNVF1Bbo9RATCbMyoOh2gfVB+UW+SoJTYois/dykQfqaJT7o8Kki7x0YgXVA2V/GC7+3G+TSRRUD5QriqWLNlfsV4U2UL1QNkiGA7/azjApAdUG5TqebQytJK1y4wlUW1TSYRKQ3UalnDxBHYtyjasihXoA4mTBLfJAHYlSDc4GtzrUpZIFeXOgWqDcAHSJqArQPxc4QB2JSg5suWKsLdoHRRBQ/VDJoeZkEk2C81LVBdRxqGpiqibCtMAfnwoCdSwqnQQrG9oquS0FZFDHoVzhvdJxGpSjDBnU8ajqpnYSvF1hBFQvlLsqB5OTYol6sED1QEUHjQuLuGRzPCpwgDoatRJ8KxPr0kAHdTwqLba6DcikSDZNYkG9BuUmWTWJKkQ5mwHVBlUJxmpz3CaxoFqhfkkYbDEs3TgA1QaVBs3KBmSyCb6czYDaGrXTBQoUKFC36wO73i+e4hl6vwAAAABJRU5ErkJggg==" alt="QRCode">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB1klEQVR42u3a0W7DMAiF4bz/S3e3VQScg5tJNvlz02lr4m+SYwzm+mx4XaBAgQIVoK7i+v5O9Jndf7/PHgfUGFQ46ZoPr+63xwE1CnUf4P77OyoCVoOqcUC9F5UNFr0IoEBVqGhSKziod6Oqh1UPdDeEj+4SQG2Pcifzr5+PZTOgtkbJokOSADgL5r9VXUBtjaomYpQsyKBqLLTpxhHUGFR3s1+9FAobBXlQs1ErxQu1qNrfAzUOlS2UVcEsm+jVhG/tPEEdiaoWwGoRjO5zDwbCsUGNRqkEIFtYVw4kQc1CVQWyKpiuvhxVoAc1B+U2QjgLpXoBykMoUCNQrQJEMaCTcMqkAtQIlJqEzoGQg8rGADUT5RxIu4c+bpHMCsigjkR1JmyWTHSbu+QmD9TxKBWUnZ+rgwL3nwQ1B+VO6k7C6fwd1GyUG2ydAr/TzGUVYkGNQHULZe4BQJWEgpqPcoKwkzy0G3tAjUC5Sanb/OAE9fRAANQIlNVobBRlnSTjp64gUEehnILE6qF3pyEa1CyUmrjdYr56kdrZDKhRKFWgdwO0bKoA9RqUCqZqgj/SLAHqOJSTHKhCxWojM6h5KCdorjQyVwdKMiCDOha10wUKFChQX9cfoqQQr9bIp+gAAAAASUVORK5CYII=" alt="QRCode">
     </li>
     
 
@@ -577,7 +516,7 @@ window.oldVersion = [
     <!-- Next Nav -->
     
         <li class="page-item page-next">
-            <a href="/2019/03/22/hello-world/">
+            <a href="/post/hello-world.html">
                 <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
                 <div class="page-item-subtitle">Hello World</div>
             </a>
